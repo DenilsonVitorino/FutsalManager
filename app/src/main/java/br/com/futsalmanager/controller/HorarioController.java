@@ -37,7 +37,7 @@ public class HorarioController {
         return list;
     }
 
-    public Horario carregaDadoById(int id){
+    public Horario carregaDadoById(Long id){
         Horario horario = new Horario();
         Cursor cursor;
         String[] campos =  {"id","mes","diasemana","hora"};
@@ -81,7 +81,7 @@ public class HorarioController {
         db.close();
     }
 
-    public void deletaDado(int id){
+    public void deletaDado(Long id){
         String where =  "id=" + id;
         db = banco.getReadableDatabase();
         db.delete("horarios",where,null);

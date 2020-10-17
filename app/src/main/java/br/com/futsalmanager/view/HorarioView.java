@@ -7,6 +7,7 @@ import br.com.futsalmanager.Adapter.HorarioAdapter;
 import br.com.futsalmanager.R;
 import br.com.futsalmanager.controller.HorarioController;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,17 +15,21 @@ import android.view.MenuItem;
 
 public class HorarioView extends AppCompatActivity {
 
+    private static RecyclerView recyclerView;
+    private static Activity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.horario_view);
+        activity = this;
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerHorarios);
         alimentarLista();
     }
 
-    private void alimentarLista() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerHorarios);
-        HorarioAdapter horarioAdapter = new HorarioAdapter(HorarioView.this, new HorarioController(HorarioView.this).carregaDados());
-        recyclerView.setLayoutManager(new GridLayoutManager(HorarioView.this,1));
+    public static void alimentarLista() {
+        HorarioAdapter horarioAdapter = new HorarioAdapter(activity, new HorarioController(activity).carregaDados());
+        recyclerView.setLayoutManager(new GridLayoutManager(activity,1));
         recyclerView.setAdapter(horarioAdapter);
     }
 
