@@ -20,14 +20,29 @@ public class CriaBanco extends SQLiteOpenHelper {
         String tabelaJogador = "CREATE TABLE jogadores("
                 + "id integer primary key autoincrement,"
                 + "nome text)";
+        String tabelaJogadoresXHorario = "CREATE TABLE jogadoresxhorario("
+                + "id integer primary key autoincrement,"
+                + "idhorario integer,"
+                + "idjogador integer,"
+                + "nomejogador text,"
+                + "camiseta integer)";
+        String tabelaJogadoresXPgto = "CREATE TABLE jogadoresxpgto("
+                + "id integer primary key autoincrement,"
+                + "idhorario integer,"
+                + "idjogador integer,"
+                + "valor double)";
         db.execSQL(tabelaHorario);
         db.execSQL(tabelaJogador);
+        db.execSQL(tabelaJogadoresXHorario);
+        db.execSQL(tabelaJogadoresXPgto);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS horarios");
         db.execSQL("DROP TABLE IF EXISTS jogadores");
+        db.execSQL("DROP TABLE IF EXISTS jogadoresxhorario");
+        db.execSQL("DROP TABLE IF EXISTS jogadoresxpgto");
         onCreate(db);
     }
 }

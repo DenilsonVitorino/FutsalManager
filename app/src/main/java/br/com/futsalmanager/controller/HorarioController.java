@@ -58,7 +58,6 @@ public class HorarioController {
         long resultado;
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        //valores.put("id", 0);
         valores.put("mes", horario.getMes());
         valores.put("diasemana", horario.getDiasemana());
         valores.put("hora", horario.getHora());
